@@ -47,8 +47,16 @@ export default function App() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you'd send this to a backend
-    console.log('Form submitted:', formData);
+    
+    const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    
+    // Gmail compose URL
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=Simonkassa44@gmail.com&su=${subject}&body=${body}`;
+    
+    // Open in new tab
+    window.open(gmailUrl, '_blank');
+    
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 5000);
     setFormData({ name: '', email: '', message: '' });
@@ -285,7 +293,7 @@ export default function App() {
                     </div>
                     <div>
                       <div className="text-xs text-neutral-500 font-bold uppercase tracking-widest mb-1">Email Me</div>
-                      <div className="text-xl font-bold">temsgen.kassa@football.com</div>
+                      <div className="text-xl font-bold">Simonkassa44@gmail.com</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-6">
